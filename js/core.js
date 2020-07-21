@@ -1,8 +1,11 @@
 
 // Search ----------------------
 function search(query) {
+    let url = "http://localhost/findingweb/api" + query;
+    
     alerts()
     console.log(query);
+    
     if (query) {
         alerts("Pesquisando por " + query + " !", "warning", true);
         searchFeedback(true)
@@ -17,7 +20,7 @@ function search(query) {
                     alerts("Erro ao acessar aos dados. Por favor, tente mais tarde!", "danger", true);
                 }
         };
-        xhttp.open("GET", "http://localhost/selectorTest/api/" + query, true);
+        xhttp.open("GET", url, true);
         xhttp.send();
     } else {
         alerts("Campo Obrigatório", "danger", true)

@@ -20,7 +20,7 @@
       <div class="input-group">
         <input type="search" class="form-control" id="dados" aria-describedby="" placeholder="Buscando por...">
         <div class=" input-group-prepend">
-          <button type="button" class="btn btn-outline-primary" onclick="return search(document.querySelector('#dados').value)">Buscar</button>
+          <button type="button" class="btn btn-outline-primary" onclick="search(document.querySelector('#dados').value)">Buscar</button>
         </div>
       </div>
       <small id="status" class="form-text text-muted"></small>
