@@ -1,8 +1,8 @@
 
 // Search ----------------------
 function search(query) {
+    let url = "http://localhost/findingweb/api/" + query ;
     alerts()
-
     if (query) {
         alerts("Pesquisando por " + query + " !", "warning", true);
         searchFeedback(true)
@@ -12,12 +12,17 @@ function search(query) {
                 listResult(this.responseText);
                 searchFeedback(false);
                 alerts("Busca finalizada!", "success", true);
-            } else
-                if (this.status == 404) {
+            } else if (this.status == 404) {
+                alerts("Erro ao acessar aos dados. Por favor, tente mais tarde!", "danger", true);
+            }
+            this.ontimeout = function (e) {
+                if (this.statusText == "") {
                     alerts("Erro ao acessar aos dados. Por favor, tente mais tarde!", "danger", true);
                 }
+            }
         };
-        xhttp.open("GET", "http://localhost/findingweb/api/" + query, true);
+        xhttp.open("GET", url, true);
+        xhttp.timeout = 5000;
         xhttp.send();
     } else {
         alerts("Campo Obrigatório", "danger", true)
