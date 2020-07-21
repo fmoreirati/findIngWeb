@@ -18,4 +18,6 @@ EX.:
 * http://localhost/findingweb/api/casa - irá retornar todas as buscas com a palavra casa;
 * http://localhost/findingweb/api/casa/20 - Para filtrar até vinte(20) resultados válidos da busca. Por padrão, se não for definido a quantidade,  ele irá retornar até dez(10) resultados válidos.
   
+### Teste on-line
+* http://fabianomoreira.gratisphphost.info/findingweb/
   
