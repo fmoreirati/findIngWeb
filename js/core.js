@@ -40,7 +40,7 @@ function listResult(list) {
     }
 
     txt += "</table>";
-    view(txt + "<br>" + objAll);
+    view(txt);
 }
 
 
