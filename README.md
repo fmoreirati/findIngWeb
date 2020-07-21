@@ -13,4 +13,4 @@ Ex.:
 :: GET - acesse a url do servidor do projeto e acrescente /api/<palavra a buscar>
 EX.:
 * http://localhost/findingweb/api/casa - irá retornar todas as buscas com a palavra casa;
-* http://localhost/findingweb/api/casa/20 - Para filtrar até vinte(20) resultados válidos (Sem anúncios/imagens) da busca; 
+* http://localhost/findingweb/api/casa/20 - Para filtrar até vinte(20) resultados válidos da busca. Por padrão, se não for definido a quantidade,  ele irá retornar até dez(10) resultados válidos.

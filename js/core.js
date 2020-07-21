@@ -29,13 +29,13 @@ function search(query) {
 function listResult(list) {
     let objAll = JSON.parse(list);
     let txt = "<table class='table'><tr> <th>Resultados</th> <tr>";
-    
+
     for (obj of objAll) {
-        txt += "<tr><td> <b>Nome</b>: " + obj.name + "<br> <b>Acesso:</b> <a href='" + obj.lnk + "' target='_blank'>" + obj.lnk + "</a> </td></tr>";
+        txt += "<tr><td> <b>Nome</b>: " + obj.name + "<br> <b>Acesso:</b> <a href='" + obj.link + "' target='_blank'>" + obj.link + "</a> </td></tr>";
     }
 
     txt += "</table>";
-    view(txt + "<br>"+ objAll);
+    view(txt + "<br>" + objAll);
 }
 
 
