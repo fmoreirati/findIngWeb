@@ -4,14 +4,15 @@ class ApiCore
     public $nameFind = "";
     public $listResults = array();
 
-    
     function findGoogle($quest, $quantResult = 10)
     {
-        $url = 'https://www.google.com/search?q=' . $quest . '&safe=active&psw=0&num=' . $quantResult . '&ie=UTF-8&as_lq';
+        $url = 'https://www.google.com/search?q=' . $quest . '&safe=active&psw=0&num=' . $quantResult . '&ie=UTF-8';
+
         $this->nameFind = $quest;
         $results = array();
+
         try {
-            if ($html = $this->get_cURL($url))
+            if (!$html = $this->get_cURL($url))
                 $html = $this->get_FileURL($url);
 
             if (!empty($html)) {
@@ -45,27 +46,26 @@ class ApiCore
                 }
             }
         } catch (Exception $e) {
-            echo "ERROR - Montar dados de retorno:" . $e->getMessage() . "</br>";
+            throw new Exception("ERROR - Montar dados de retorno:" . $e->getMessage() . "</br>", 2);
         }
 
-        return $this->listResults = json_encode($results);
+        return $this->listResults = json_encode(array_values($results));
     }
 
     //Pega site de url especifica em formato: HTML
     function get_cURL($url)
     {
-        $html = "";
+        $html = "erro";
         try {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, false);
             $html = curl_exec($ch);
-        } catch (Exception $e) {
-            echo "ERROR - Captura de dados (cURL):" . $e->getMessage() . "</br> <-- cURL --> </br>" .  curl_error($ch) . "</br>";
-        } finally {
             curl_close($ch);
+        } catch (Exception $e) {
+            throw new Exception("ERROR - Captura de dados (cURL):" . $e->getMessage() . "</br> <-- cURL --> </br>" .  curl_error($ch) . "</br>", 1);
         }
         return $html;
     }
@@ -84,7 +84,7 @@ class ApiCore
             $context = stream_context_create($config);
             $html = file_get_contents($url, false, $context);
         } catch (Exception $e) {
-            throw "ERROR - Captura de dados (FileGet):" . $e->getMessage() . "</br>";
+            throw new Exception("ERROR - Captura de dados (FileGet):" . $e->getMessage() . "</br>", 1);
         }
         return $html;
     }

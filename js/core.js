@@ -1,11 +1,8 @@
 
 // Search ----------------------
 function search(query) {
-    let url = "http://localhost/findingweb/api/" + query;
-    
     alerts()
-    console.log(query);
-    
+
     if (query) {
         alerts("Pesquisando por " + query + " !", "warning", true);
         searchFeedback(true)
@@ -20,7 +17,7 @@ function search(query) {
                     alerts("Erro ao acessar aos dados. Por favor, tente mais tarde!", "danger", true);
                 }
         };
-        xhttp.open("GET", url, true);
+        xhttp.open("GET", "http://localhost/findingweb/api/" + query, true);
         xhttp.send();
     } else {
         alerts("Campo Obrigatório", "danger", true)
@@ -30,14 +27,15 @@ function search(query) {
 
 // View -------------------
 function listResult(list) {
-    let myObj = JSON.parse(list);
-    console.log(myObj);
+    let objAll = JSON.parse(list);
     let txt = "<table class='table'><tr> <th>Resultados</th> <tr>";
-    for (obj of myObj) {
-        txt += "<tr><td> <b>Nome</b>: " + obj.name + "<br> <b>Acesso:</b> <a href='" + obj.link + "' target='_blank'>" + obj.link + "</a></td></tr>";
+    
+    for (obj of objAll) {
+        txt += "<tr><td> <b>Nome</b>: " + obj.name + "<br> <b>Acesso:</b> <a href='" + obj.lnk + "' target='_blank'>" + obj.lnk + "</a> </td></tr>";
     }
+
     txt += "</table>";
-    view(txt);
+    view(txt + "<br>"+ objAll);
 }
 
 
@@ -66,6 +64,7 @@ function alerts(text = "", type = "", status = false) {
     obj.innerHTML = text;
     obj.style = view;
 }
+
 
 function searchFeedback(status, text = 'Pesquisando...') {
     let view = "display:none";
