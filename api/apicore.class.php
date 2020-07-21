@@ -14,7 +14,7 @@ class ApiCore
         try {
             if (!$html = $this->get_cURL($url))
                 $html = $this->get_FileURL($url);
-    
+
             if (!empty($html)) {
                 $html_doc = new DOMDocument('', 'UTF-8');
                 libxml_use_internal_errors(TRUE);
