@@ -1,6 +1,11 @@
 <?php
+/*
+    Interface para API 
+*/
+
 require_once("config.php");
 require_once("apicore.class.php");
+
 $method = $_SERVER["REQUEST_METHOD"];
 
 if ($method === "GET") {
