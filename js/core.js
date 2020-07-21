@@ -1,5 +1,5 @@
 
-// Search ----------------------
+//Search ----------------------
 function search(query, quants) {
     let url = "http://localhost/findingweb/api/" + query + "/" + quants;
     alerts()
