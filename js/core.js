@@ -1,7 +1,8 @@
 
 // Search ----------------------
-function search(query) {
-    let url = "http://localhost/findingweb/api/" + query ;
+function search(query, quants) {
+    let url = "http://localhost/findingweb/api/" + query + "/" + quants;
+    console.log(url);
     alerts()
     if (query) {
         alerts("Pesquisando por " + query + " !", "warning", true);
@@ -33,7 +34,7 @@ function search(query) {
 // View -------------------
 function listResult(list) {
     let objAll = JSON.parse(list);
-    let txt = "<table class='table'><tr> <th>Resultados</th> <tr>";
+    let txt = "<table class='table'><tr> <th>Resultados: " + objAll.length + "</th> <tr>";
 
     for (obj of objAll) {
         txt += "<tr><td> <b>Nome</b>: " + obj.name + "<br> <b>Acesso:</b> <a href='" + obj.link + "' target='_blank'>" + obj.link + "</a> </td></tr>";

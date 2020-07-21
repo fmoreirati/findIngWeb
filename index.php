@@ -20,7 +20,13 @@
       <div class="input-group">
         <input type="search" class="form-control" id="dados" placeholder="Buscando por...">
         <div class=" input-group-prepend">
-          <button type="button" class="btn btn-outline-primary" onclick="search(document.querySelector('#dados').value)">Buscar</button>
+          <select class="custom-select" id="validos">
+            <option selected value="">Validos até</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+          <button type="button" class="btn btn-outline-primary" onclick="search(document.querySelector('#dados').value,document.querySelector('#validos').value)">Buscar</button>
         </div>
       </div>
       <small id="status" class="form-text text-muted"></small>
