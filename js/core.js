@@ -1,7 +1,7 @@
 
 // Search ----------------------
 function search(query) {
-    let url = "http://localhost/findingweb/api" + query;
+    let url = "http://localhost/findingweb/api/" + query;
     
     alerts()
     console.log(query);
