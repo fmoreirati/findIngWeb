@@ -1,3 +1,11 @@
+/*
+    Sistema de Busca de dados na web: findingweb
+    Feito por Fabiano Moreira - fabianomoreira.ti@gmail.com - jul/2020
+    Github: https://github.com/fmoreirati/findIngWeb
+    Teste on-line:  http://fabianomoreira.gratisphphost.info/findingweb/
+    Núcleo de solicitação de busca e tratamento de resultado em JS
+*/
+
 
 //Search ----------------------
 function search(query, quants) {

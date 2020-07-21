@@ -1,8 +1,17 @@
 <?php
+/*
+    Sistema de Busca de dados na web: findingweb
+    Feito por Fabiano Moreira - fabianomoreira.ti@gmail.com - jul/2020
+    Github: https://github.com/fmoreirati/findIngWeb
+    Teste on-line:  http://fabianomoreira.gratisphphost.info/findingweb/
+    Classe da API para atender solicitações de busca de dados feita em PHP
+*/
+
 class ApiCore
 {
     public $nameFind = "";
     public $listResults = array();
+
 
     function findGoogle($quest, $quantResult = 10)
     {
@@ -22,6 +31,7 @@ class ApiCore
                 libxml_clear_errors();
                 $html_xpath = new DOMXPath($html_doc);
 
+                //Critério de seleção do conteudo bruto baixado na variavel: $html
                 $html_row = $html_xpath->query("//div[@id='main']/div/div/div/a");
 
                 if ($html_row->length > 0) {
@@ -36,9 +46,9 @@ class ApiCore
                                 array_push($results, array(
                                     "name" => $name,
                                     "link" => $link,
+                                    //"TextFull" => $row->nodeValue,
                                     //"linkGoogleFull" => $textLinkGoogle,
                                     //"linkFull" => $row->lastChild->nodeValue,
-                                    //"TextFull" => $row->nodeValue,
                                 ));
                             }
                         }
@@ -48,11 +58,11 @@ class ApiCore
         } catch (Exception $e) {
             throw new Exception("ERROR - Montar dados de retorno:" . $e->getMessage(), 2);
         }
-
         return $this->listResults = json_encode(array_values($results));
     }
 
-    //Pega site de url especifica em formato: HTML
+
+    //Pega conteudo bruto do site da url especifica em formato HTML via CURL ou FileGET
     function get_cURL($url)
     {
         $html = "";
