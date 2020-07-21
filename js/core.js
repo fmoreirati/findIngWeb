@@ -2,7 +2,6 @@
 // Search ----------------------
 function search(query, quants) {
     let url = "http://localhost/findingweb/api/" + query + "/" + quants;
-    console.log(url);
     alerts()
     if (query) {
         alerts("Pesquisando por " + query + " !", "warning", true);
@@ -13,7 +12,7 @@ function search(query, quants) {
                 listResult(this.responseText);
                 searchFeedback(false);
                 alerts("Busca finalizada!", "success", true);
-            } else if (this.status == 404) {
+            } else if (this.status == 404 || this.status == 302) {
                 alerts("Erro ao acessar aos dados. Por favor, tente mais tarde!", "danger", true);
             }
             this.ontimeout = function (e) {
